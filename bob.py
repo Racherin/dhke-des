@@ -1,5 +1,4 @@
 import sys
-from functools import wraps
 import random
 from math import gcd
 
@@ -37,36 +36,49 @@ def primRoots(modulo):
     return [g for g in range(1, modulo) if coprime_set == {pow(g, powers, modulo) for powers in range(1, modulo)}]
 
 
-def check_prime_root(p,g):
+def check_prime_root(p, g):
     prim_root_list = primRoots(p)
+    
 
-    if g in prim_root_list :
+    if g in prim_root_list:
         print(g, "is a prime root of", p)
-    else :
+    else:
         print(g, "is not a prime root of", p)
         sys.exit()
 
+
 if sys.argv[1] == "dhke":
     #print("dhke mode")
-    if "-p" not in sys.argv or "-g" not in sys.argv:
-        print("Example usage : alice.py dhke -p 23 -g 5")
+    if "-p" not in sys.argv:
+        print("Example usage : bob.py dhke -p 23 -g 5")
         sys.exit()
 
-    
-    p = int(sys.argv[sys.argv.index("-p") + 1])
+    if "-g" in sys.argv:
 
-    g = int(sys.argv[sys.argv.index("-g") + 1])
+        p = int(sys.argv[sys.argv.index("-p") + 1])
 
-    check_prime(p)
+        g = int(sys.argv[sys.argv.index("-g") + 1])
 
-    check_prime_root(p,g)
+        check_prime(p)
 
-    private_key = random.randint(1,200)
+        check_prime_root(p, g)
 
-    public_key = pow(g,private_key,p)
+        private_key = random.randint(1, 200)
 
-    print("Private key :", private_key, "\nPublic : ",public_key)
-    
+        public_key = pow(g, private_key, p)
+
+        print("Private key :", private_key, "\nPublic : ", public_key)
+
+    elif "-b" in sys.argv and "-A" in sys.argv:
+
+        p = int(sys.argv[sys.argv.index("-p") + 1])
+
+        bob_private = int(sys.argv[sys.argv.index("-b") + 1])
+
+        alice_public = int(sys.argv[sys.argv.index("-A") + 1])
+
+        print("Key : ", pow(alice_public, bob_private, p))
+
 
 elif sys.argv[1] == "des":
     print("des mode")
