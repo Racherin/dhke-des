@@ -1,30 +1,6 @@
 import sys
-from functools import wraps
 import random
-
-def cache_gcd(f):
-    cache = {}
-
-    @wraps(f)
-    def wrapped(a, b):
-        key = (a, b)
-        try:
-            result = cache[key]
-        except KeyError:
-            result = cache[key] = f(a, b)
-        return result
-    return wrapped
-
-
-@cache_gcd
-def gcd(a, b):
-    while b != 0:
-        a, b = b, a % b
-    return a
-# or just do the following (recommended)
-# from math import gcd
-# print(sys.argv)
-
+from math import gcd
 
 def check_prime(number):
 
