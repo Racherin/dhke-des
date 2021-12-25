@@ -41,12 +41,12 @@
 3. **Encryption and decryption of a single message**
 
     ```
-    - python alice.py des -p 'This is the secret message.' -k 18
-    - Raw cipher :  b'\x9dQ\xb0"g\x05\xce\x0f\xc7\x1c\x0f\xaan\xeb\xf8\xfd\xf3j\'\xdf\xb5\xa8\xddc\xb3K)\xfa)=\xab\xa8'
-    - Readable cipher :  nVGwImcFzg/HHA+qbuv4/fNqJ9+1qN1js0sp+ik9q6g=
+    - python alice.py des -p 'This is the secret message.' -k 8
+    - Raw cipher : b'\x9dQ\xb0"g\x05\xce\x0f\xc7\x1c\x0f\xaan\xeb\xf8\xfd\xf3j\'\xdf\xb5\xa8\xddc\xb3K)\xfa)=\xab\xa8'
+    - Readable cipher :  fHiWFeuvInA/c33qd5K3leX9WA+PhXTFxet8/Rn0haA=
     ```
 
     ```
-    - python bob.py des -k 18 -c 'nVGwImcFzg/HHA+qbuv4/fNqJ9+1qN1js0sp+ik9q6g='
+    - python bob.py des -k 8 -c 'fHiWFeuvInA/c33qd5K3leX9WA+PhXTFxet8/Rn0haA='
     - This is the secret message.
     ```
