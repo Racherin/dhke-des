@@ -1,7 +1,0 @@
-p : 11
-g : 6
-alice private : 50
-alice public : 1
-bob private : 129
-bob public : 2
-
